@@ -117,7 +117,7 @@ export default function AboutGallery() {
             <h4 className="text-2xl text-black font-semibold">Inspiration Behind the Journey</h4>
           </div>
           <p className="text-gray-700 text-base leading-relaxed">
-            As a Computer Science student passionate about AI and web development, each step in this project reflects more than just coding — it captures growth, curiosity, and purpose. This café app idea came from real-world needs and the desire to build something meaningful, blending technology with daily life experiences.
+            As a Computer Science student passionate about AI and web development, each step in this project reflects more than just coding — it captures growth, curiosity, and purpose. I am really happy in blending technology with daily life experiences.
           </p>
         </div>
 
