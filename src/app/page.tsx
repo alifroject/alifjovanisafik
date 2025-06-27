@@ -1,103 +1,181 @@
-import Image from "next/image";
+'use client';
+import { useEffect, useRef, useState } from "react";
+
+import { Sections } from "../components/sections/Home-PageSections";
+import { GallerySection } from "../components/sections/Gallery-Home";
+
+import { Navigation } from "../components/navigates/Navigation"
+import { Footer } from "../components/footers/Footer"
+import { HiDownload } from "react-icons/hi";// 👈 Optional: you can use an icon lib
+import { HiOutlineMenuAlt2 } from "react-icons/hi";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useTransitionStore } from '../components/store/transitionStore';
+
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const directionRef = useRef(1);
+  const [isScrollingUp, setIsScrollingUp] = useState(false);
+  const [showMenuButton, setShowMenuButton] = useState<boolean>(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const show = useTransitionStore((s) => s.show);
+  const hide = useTransitionStore((s) => s.hide);
+  const [showContent, setShowContent] = useState(false);
+
+
+  useEffect(() => {
+    show("Home");
+
+    const timeout = setTimeout(() => {
+      hide();
+      setShowContent(true);
+    }, 1200); // Wait longer for message animation
+
+    return () => clearTimeout(timeout);
+  }, [show, hide]);
+
+
+
+
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const goingUp = scrollY < lastScrollY;
+      if (goingUp !== isScrollingUp) {
+        setIsScrollingUp(goingUp);
+        directionRef.current = goingUp ? 1 : -1;
+      }
+      lastScrollY = scrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isScrollingUp]);
+
+  useEffect(() => {
+    let position = 0;
+    let animationFrameId: number;
+
+    const animate = () => {
+      if (wrapperRef.current && contentRef.current) {
+        position += directionRef.current * 1.2;
+
+        const contentWidth = contentRef.current.offsetWidth / 2;
+        if (position <= -contentWidth) {
+          position = 0;
+        } else if (position >= 0) {
+          position = -contentWidth;
+        }
+
+        contentRef.current.style.transform = `translateX(${position}px)`;
+      }
+
+      animationFrameId = requestAnimationFrame(animate);
+    };
+
+    animationFrameId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, []);
+
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+
+    const handleScroll = (): void => {
+      const scrollY = window.scrollY;
+      const goingUp = scrollY < lastScrollY;
+
+      if (goingUp !== isScrollingUp) {
+        setIsScrollingUp(goingUp);
+        directionRef.current = goingUp ? 1 : -1;
+      }
+
+      // Toggle menu button based on scroll direction
+      if (scrollY > 100 && !goingUp) {
+        setShowMenuButton(true);
+      } else {
+        setShowMenuButton(false);
+      }
+
+      lastScrollY = scrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isScrollingUp]);
+
+
+
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["end end", "start start"]
+  });
+
+  // Gallery section lifts up as you scroll
+  const galleryY = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  // Footer stays fixed but fades in
+  const footerOpacity = useTransform(scrollYProgress, [0.2, 0.5], [0, 1]);
+  return (
+    <>
+      <motion.div
+        className="min-h-screen bg-white"
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.9, ease: 'easeOut' }}
+      >
+
+        {showContent && (
+          <div className="relative min-h-screen">
+            <div
+              className="absolute top-0 left-1/2 -translate-x-1/2 h-full w-[2000px] bg-no-repeat bg-cover pointer-events-none"
+              style={{
+                backgroundImage: "url('/Me2.jpg')",
+                backgroundSize: "100%",
+                backgroundPosition: "center top -480px",
+              }}
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+
+            {/* Infinite Marquee */}
+            <div className="absolute md:top-0 top-[90px] left-0 h-full w-full md:w-1/2 z-10 flex items-start justify-start p-6 pointer-events-none">
+              <div className="relative w-full h-full overflow-hidden" ref={wrapperRef}>
+                <div
+                  ref={contentRef}
+                  className="absolute z-0 md:z-10 top-1/2 md:top-1/2 text-gray-700 bg-white border border-black text-[40px] md:text-[200px] md:border-none md:bg-transparent md:text-black -translate-y-1/2 flex whitespace-nowrap font-semibold px-4 will-change-transform"
+                >
+                  <span className="px-4">Welcome to Alif's Portfolio.</span>
+                  <span className="px-4">Welcome to Alif's Portfolio.</span>
+                </div>
+
+              </div>
+            </div>
+
+            {/* Download Icon and Text */}
+            <div className="absolute bottom-148 md:bottom-72 right-[190px] text-black text-sm md:text-xl z-20 max-w-xs md:max-w-md leading-relaxed text-left">
+              <div className="absolute bottom-12 md:bottom-18 left-[0px] md:text-black z-20">
+                <HiDownload size={32} className="-rotate-45" />
+              </div>
+              <p className="text-black text-[20px] md:text-[30px] md:text-black">
+                CS Student
+              </p>
+            </div>
+          </div>
+        )}
+
+        {showContent && (
+          <div className="relative z-10">
+            <Sections />
+            <GallerySection />
+          </div>
+        )}
+      </motion.div>
+    </>
   );
+
 }
