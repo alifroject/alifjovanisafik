@@ -1,6 +1,7 @@
 "use client";
 import * as React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export const ReactHeroSection: React.FC = () => {
   return (
@@ -28,7 +29,7 @@ export const ReactHeroSection: React.FC = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: false, amount: 0.5 }}
         >
-          <img
+          <Image
             src="/react.png"
             alt="React Hero"
             className="h-[250px] md:h-[350px] w-auto object-cover rounded-[50px] md:rounded-[87px]"
@@ -46,7 +47,7 @@ export const ReactHeroSection: React.FC = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: false, amount: 0.5 }}
         >
-          <img
+          <Image
             src="/nextjs.png"
             alt="next js Hero"
             className="h-[180px] md:h-[250px] w-auto object-contain rounded-[40px] md:rounded-[60px]"

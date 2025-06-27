@@ -7,7 +7,7 @@ import { GallerySection } from "../components/sections/Gallery-Home";
 
 import { HiDownload } from "react-icons/hi";// 👈 Optional: you can use an icon lib
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useTransitionStore } from '../components/store/transitionStore';
 
 
@@ -109,16 +109,8 @@ export default function Home() {
 
 
 
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["end end", "start start"]
-  });
 
-  // Gallery section lifts up as you scroll
-  const galleryY = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  // Footer stays fixed but fades in
-  const footerOpacity = useTransform(scrollYProgress, [0.2, 0.5], [0, 1]);
+
   return (
     <>
       <motion.div
@@ -147,8 +139,9 @@ export default function Home() {
                   ref={contentRef}
                   className="absolute z-0 md:z-10 top-1/2 md:top-1/2 text-gray-700 bg-white border border-black text-[40px] md:text-[200px] md:border-none md:bg-transparent md:text-black -translate-y-1/2 flex whitespace-nowrap font-semibold px-4 will-change-transform"
                 >
-                  <span className="px-4">Welcome to Alif's Portfolio.</span>
-                  <span className="px-4">Welcome to Alif's Portfolio.</span>
+                  <span className="px-4">Welcome to Alif&apos;s Portfolio.</span>
+                  <span className="px-4">Welcome to Alif&apos;s Portfolio.</span>
+
                 </div>
 
               </div>

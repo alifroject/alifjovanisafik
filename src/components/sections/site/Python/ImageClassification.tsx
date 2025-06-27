@@ -3,6 +3,7 @@
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 interface Step {
   title: string;
@@ -157,7 +158,7 @@ export default function ImageClassificationPage() {
           transition={{ delay: 0.4, duration: 0.5 }}
           viewport={{ once: false }}
         >
-          <img
+          <Image
             src="/urlClassfication.png"
             alt="MobileNetV3 Preview"
             className="w-full rounded-xl shadow-lg transform group-hover:scale-105 transition duration-300"
@@ -219,7 +220,7 @@ export default function ImageClassificationPage() {
       >
         {/* Image Section */}
         <div className="w-full md:w-1/2">
-          <img
+          <Image
             src={step.imageUrl}
             alt={step.title}
             className="rounded-xl shadow-md object-cover w-full max-h-[300px] md:max-h-[400px]"
@@ -271,7 +272,7 @@ export default function ImageClassificationPage() {
             >
               <div className="bg-gray-900 border border-white/20 shadow-2xl rounded-2xl p-6 w-[80%] max-w-[700px] h-[75%] flex flex-col items-center justify-between transition-all duration-500">
                 <div className="w-full h-[70%] flex items-center justify-center overflow-hidden rounded-xl">
-                  <img
+                  <Image
                     src={item.image}
                     alt={`Slide ${i}`}
                     className="object-contain w-full h-full rounded-xl transition-all duration-500"

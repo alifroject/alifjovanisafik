@@ -2,7 +2,7 @@
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import Link from 'next/link';
 import React, { useState } from 'react';
-
+import Image from 'next/image';
 const fadeUpVariant = {
     hidden: { opacity: 0, y: 60 },
     visible: {
@@ -99,7 +99,7 @@ const Section = ({ linkTo, imageSrc, description, titleLine1, titleLine2 }: Sect
                         transition={{ type: 'spring', stiffness: 200, damping: 20 }}
                     >
                         <div className={`relative rounded-xl overflow-hidden shadow-2xl border-2 border-white bg-white ${screenWidth < 768 ? 'w-72 h-44' : 'w-[400px] h-[300px]'}`}>
-                            <img
+                            <Image
                                 src={imageSrc}
                                 alt="Preview"
                                 className="w-full h-full object-cover pointer-events-none"

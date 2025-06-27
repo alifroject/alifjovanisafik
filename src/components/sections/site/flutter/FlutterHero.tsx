@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
 import { motion } from "framer-motion";
-
+import Image from "next/image";
 export const FlutterHeroSection: React.FC = () => {
   return (
     <section className="w-full px-4 py-12 space-y-16 md:py-20 md:space-y-24">
@@ -28,7 +28,7 @@ export const FlutterHeroSection: React.FC = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: false, amount: 0.5 }}
         >
-          <img
+          <Image
             src="/flutter.png"
             alt="Flutter Hero"
             className="h-[160px] sm:h-[180px] md:h-[250px] w-auto object-cover rounded-[40px] sm:rounded-[50px] md:rounded-[87px]"
@@ -46,7 +46,7 @@ export const FlutterHeroSection: React.FC = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: false, amount: 0.5 }}
         >
-          <img
+          <Image
             src="/firebase.png"
             alt="Firebase Hero"
             className="h-[160px] sm:h-[180px] md:h-[250px] w-auto object-contain rounded-[30px] sm:rounded-[40px] md:rounded-[60px]"

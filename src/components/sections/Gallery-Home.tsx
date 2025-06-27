@@ -1,8 +1,7 @@
 'use client';
 import React from 'react';
 import { motion } from 'framer-motion';
-
-import { useInView } from '../hooks/useInView'
+import Image from 'next/image';
 
 const imagesLeft = [
     "/flutter.png",
@@ -23,8 +22,6 @@ const imagesRight = [
 
 export const GallerySection = () => {
 
-    const { ref, isIntersecting } = useInView(100); // detect when gallery leaves view
-
     const renderColumn = (images: string[], reverse: boolean = false) => (
         <motion.div
             className={`flex flex-col gap-6 ${reverse ? 'items-end' : 'items-start'
@@ -37,7 +34,7 @@ export const GallerySection = () => {
                     key={i}
                     className="w-36 h-52 rounded-xl overflow-hidden border-2 border-black bg-white shadow-md"
                 >
-                    <img
+                    <Image
                         src={src}
                         alt={`img-${i}`}
                         className="object-cover w-full h-full"

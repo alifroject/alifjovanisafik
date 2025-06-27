@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-
+import Image from "next/image";
 export const HeroSection: React.FC = () => {
   const { scrollY } = useScroll();
 
@@ -25,7 +25,7 @@ export const HeroSection: React.FC = () => {
           style={{ x: smoothPythonX }}
           className="flex flex-col md:flex-row items-center gap-4 md:gap-6 text-center md:text-left"
         >
-          <img
+          <Image
             src="/python.png"
             alt="Python Logo"
             className="w-28 h-28 md:w-40 md:h-40"
@@ -46,7 +46,7 @@ export const HeroSection: React.FC = () => {
           <span className="text-4xl md:text-7xl font-extrabold text-orange-500">
             PyTorch
           </span>
-          <img
+          <Image
             src="/pytorch.png"
             alt="PyTorch Logo"
             className="w-28 h-28 md:w-40 md:h-40"

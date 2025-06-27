@@ -64,7 +64,7 @@ export const DocumentationContent: React.FC = () => {
             key={index}
             className="flex flex-col items-center shadow-md hover:shadow-lg transition-shadow rounded-xl p-4 bg-white w-full max-w-[200px]"
           >
-            <img
+            <Image
               src={cert.image}
               alt={cert.title}
               className="w-full h-32 object-cover rounded-lg mb-3 cursor-pointer"
@@ -99,7 +99,7 @@ export const DocumentationContent: React.FC = () => {
             </div>
 
 
-            <img
+            <Image
               src={selectedImage}
               alt="Certificate preview"
               className="w-full h-auto rounded-lg"

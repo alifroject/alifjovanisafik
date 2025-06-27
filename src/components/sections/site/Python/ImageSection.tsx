@@ -60,7 +60,7 @@ export const ImageSection: React.FC<ImageSectionProps> = ({
             <p>
               Python is a highly readable and versatile programming language,
               celebrated for its intuitive syntax and powerful libraries.
-              It's widely used in web development, data analysis, and especially
+              It&apos;s widely used in web development, data analysis, and especially
               in AI and machine learning, where its simplicity accelerates innovation.
             </p>
           </div>

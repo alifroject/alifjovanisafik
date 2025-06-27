@@ -1,10 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Globe from './AboutGallery';
-
+import Image from 'next/image';
 const SimplePage = () => {
-  const [scrollY, setScrollY] = useState(0);
+  const [, setScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -19,7 +18,7 @@ const SimplePage = () => {
         <div className="w-full md:w-[30%]">
           <h2 className="text-2xl font-bold mb-4">Undergraduate Student</h2>
           <p className="text-base leading-relaxed">
-            I'm currently an undergraduate student majoring in Computer Science and Information Systems. My academic journey focuses on developing practical tech solutions through coding, systems design, and data-driven thinking. This project reflects my learning, creativity, and commitment to building real-world applications.
+            I&apos;m currently an undergraduate student majoring in Computer Science and Information Systems. My academic journey focuses on developing practical tech solutions through coding, systems design, and data-driven thinking. This project reflects my learning, creativity, and commitment to building real-world applications.
           </p>
         </div>
 
@@ -27,7 +26,7 @@ const SimplePage = () => {
         {/* Image & Globe */}
         <div className="w-full md:w-[70%] h-[90vh] relative overflow-hidden  shadow-lg">
 
-          <img
+          <Image
             src="/me.jpg"
             alt="Visual Representation"
             className="w-full h-full object-cover"

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ContentBlock } from "../Javascript/ContentBlock";
+import Image from "next/image";
 
 export const ImageGallerySection: React.FC = () => {
   return (
@@ -8,7 +8,7 @@ export const ImageGallerySection: React.FC = () => {
 
         {/* 🖥️ Laptop with video */}
         <div className="relative w-full aspect-[1.67] max-md:max-w-full">
-          <img
+          <Image
             src="https://cdn.builder.io/api/v1/image/assets/TEMP/e9cde8bf114b6726d7385fae5e31f7c936a1b2dc?placeholderIfAbsent=true&apiKey=533b204a865e416d87d00b3e64c64775"
             alt="Laptop"
             className="object-contain w-full h-auto"

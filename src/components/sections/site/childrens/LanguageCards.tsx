@@ -1,6 +1,6 @@
 'use client';
 import React, { useRef, useState } from 'react';
-
+import Image from 'next/image';
 export interface LanguageCardProps {
   name: string;
   image1: string;
@@ -27,13 +27,13 @@ export const LanguageCard: React.FC<LanguageCardProps> = ({ name, image1, image2
       className="relative p-6 bg-gradient-to-tr from-white via-blue-50 to-white rounded-2xl shadow-xl border border-gray-100 w-full h-56 cursor-pointer overflow-hidden transition-transform duration-300 hover:scale-[1.03] flex flex-col items-center justify-center group"
     >
       <div className="flex items-center justify-center gap-3 mb-4">
-        <img
+        <Image
           src={image1}
           alt={`${name} logo 1`}
           className="w-10 h-10 object-contain drop-shadow-md"
         />
         {image2 && (
-          <img
+          <Image
             src={image2}
             alt={`${name} logo 2`}
             className="w-10 h-10 object-contain drop-shadow-md"
@@ -64,13 +64,13 @@ export const LanguageCard: React.FC<LanguageCardProps> = ({ name, image1, image2
           }}
         >
           <div className="flex gap-2 items-center justify-center mb-2">
-            <img
+            <Image
               src={image1}
               alt={`${name} icon 1`}
               className="w-8 h-8 object-contain"
             />
             {image2 && (
-              <img
+              <Image
                 src={image2}
                 alt={`${name} icon 2`}
                 className="w-8 h-8 object-contain"

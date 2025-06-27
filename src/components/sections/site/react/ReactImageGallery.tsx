@@ -2,7 +2,7 @@
 import * as React from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import Image from "next/image";
 import { FiZap } from "react-icons/fi";
 import { FiArrowLeft } from "react-icons/fi";
 
@@ -77,7 +77,7 @@ export const ReactImageGallery: React.FC = () => {
                             </div>
 
                             <div>
-                                <img
+                                <Image
                                     src="/next5.png"
                                     alt="Preview"
                                     className="w-full h-36 object-cover rounded-md mb-3"

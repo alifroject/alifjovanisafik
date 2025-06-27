@@ -23,10 +23,10 @@ export default function AboutGallery() {
       {/* Responsive Grid (only affects md and below) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {items.map((item) => {
-          let positionClass = 'md:relative'; // prevent positioning on larger screens
+          const positionClass = 'md:relative'; // prevent positioning on larger screens
           let initial = {};
           let animate = {};
-          let transition = {
+          const transition = {
             type: 'spring',
             stiffness: 70,
             damping: 18,
