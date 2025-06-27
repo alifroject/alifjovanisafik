@@ -10,7 +10,7 @@ export const ContactLeft: React.FC = () => {
       {/* Profile Photo */}
       <div className="w-32 h-32 sm:w-40 sm:h-40 relative overflow-hidden rounded-full border-4 border-blue-100 shadow-md">
         <Image
-          src="/me2.jpg"
+          src="/Me2.jpg"
           alt="Your Name"
           fill
           className="object-cover object-top"

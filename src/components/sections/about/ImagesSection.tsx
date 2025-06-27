@@ -27,7 +27,7 @@ const SimplePage = () => {
         <div className="w-full md:w-[70%] h-[90vh] relative overflow-hidden  shadow-lg">
 
           <Image
-            src="/me.jpg"
+            src="/Me.jpg"
             alt="Visual Representation"
             className="w-full h-full object-cover"
           />
