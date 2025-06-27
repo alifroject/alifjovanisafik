@@ -3,9 +3,8 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import { ClientLayoutWrapper } from '@/components/layout/ClientLayoutWrapper';
 import { TransitionOverlay } from '../components/TransitionOverlay';
-import { Footer } from "../components/footers/Footer"
+
 import { AnimatedFooter } from "../components/footers/AnimatedFooter"
-import { motion, useScroll, useTransform } from "framer-motion";
 
 
 const geistSans = Geist({

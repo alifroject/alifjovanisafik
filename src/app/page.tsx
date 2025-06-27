@@ -4,10 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { Sections } from "../components/sections/Home-PageSections";
 import { GallerySection } from "../components/sections/Gallery-Home";
 
-import { Navigation } from "../components/navigates/Navigation"
-import { Footer } from "../components/footers/Footer"
+
 import { HiDownload } from "react-icons/hi";// 👈 Optional: you can use an icon lib
-import { HiOutlineMenuAlt2 } from "react-icons/hi";
+
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useTransitionStore } from '../components/store/transitionStore';
 
@@ -17,9 +16,8 @@ export default function Home() {
   const contentRef = useRef<HTMLDivElement>(null);
   const directionRef = useRef(1);
   const [isScrollingUp, setIsScrollingUp] = useState(false);
-  const [showMenuButton, setShowMenuButton] = useState<boolean>(false);
+  const [, setShowMenuButton] = useState<boolean>(false);
 
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const show = useTransitionStore((s) => s.show);
   const hide = useTransitionStore((s) => s.hide);
   const [showContent, setShowContent] = useState(false);

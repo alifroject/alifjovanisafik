@@ -3,7 +3,7 @@
 import AboutSection from "../../components/sections/about/About";
 import { useTransitionStore } from '../../components/store/transitionStore';
 import { useEffect, useState } from 'react';
-import { motion } from "framer-motion";
+
 
 export default function Site() {
   const show = useTransitionStore((s) => s.show);

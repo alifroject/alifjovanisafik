@@ -3,7 +3,7 @@
 import {ContactPage} from "../../components/sections/contact/ContactPage";
 import { useTransitionStore } from '../../components/store/transitionStore';
 import { useEffect, useState } from 'react';
-import { motion } from "framer-motion";
+
 
 export default function Contact() {
   const show = useTransitionStore((s) => s.show);

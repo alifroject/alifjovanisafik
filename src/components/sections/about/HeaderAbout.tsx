@@ -9,7 +9,7 @@ export const HeaderAbout: React.FC = () => {
   const controls = useAnimation();
   const [ref, inView] = useInView({ triggerOnce: false, threshold: 0.2 });
 
-  const [scrollY, setScrollY] = React.useState(0);
+  const [, setScrollY] = React.useState(0);
 
   React.useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
